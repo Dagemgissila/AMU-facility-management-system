@@ -64,6 +64,13 @@
         </a>
     </li>
 
+    <li class="nav-item {{Request::is('manager/item-request') ? 'bg-info font-weight-bold' : ''}}">
+        <a class="nav-link" href="{{route('manager.viewRequestItem')}}">
+            <i class="fas fa-building"></i>
+            <span>View Request Item</span>
+        </a>
+    </li>
+
     <li class="nav-item">
         <a class="nav-link collapsed {{ Request::is('manager/work/*') ? 'show' : '' }}" href="#" data-toggle="collapse" data-target="#collapseTwo"
         aria-expanded="{{ Request::is('manager/work/*') ? 'true' : 'false' }}"  aria-controls="collapseTwo">

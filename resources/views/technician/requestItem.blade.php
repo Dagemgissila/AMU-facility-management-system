@@ -7,16 +7,22 @@
                <h3 class="modal-titl"> Request New Item</h3>
             </div>
             <div class="modal-body">
-                <form action="{{route('technician.addItem')}}" method="post">
+                <form action="{{route('technician.request')}}" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="">Material required</label>
-                        <input type="text" class="form-control" name="material_required" id="">
+                         <select name="material_id" id="" class="form-control">
+                            @if ($material->count()>0)
+                            @foreach ($material as $item)
+                            <option value="{{$item->id}}">{{$item->material_name . " (" . $item->unit .")"}}</option>
+                            @endforeach
+                            @else
+                            <option value="" disabled>no item found</option>
+                          @endif
+                         </select>
+
                     </div>
-                    <div class="form-group">
-                        <label for="">Unit</label>
-                        <input type="number" class="form-control" name="unit" id="">
-                    </div>
+
                     <div class="form-group">
                         <label for="building">Quantity</label>
                         <input type="number" class="form-control" name="quantity" id="">
@@ -78,12 +84,14 @@
                                              @foreach ($items as $item)
                                                   <tr>
                                                     <td>{{++$i}}</td>
-                                                    <td>{{$item->material_required}}</td>
-                                                    <td>{{$item->unit}}</td>
+                                                    <td>{{$item->items->material_name}}</td>
+                                                    <td>{{$item->items->unit}}</td>
                                                     <td>{{$item->quantity}}</td>
                                                     <td>
                                                         @if ($item->status ==0)
                                                              <p class="text-danger font-weight-bold">pending</p>
+                                                        @elseif ($item->status == 0 )
+                                                        <p class="text-danger font-weight-bold">reject</p>
                                                         @else
                                                         <p class="text-success font-weight-bold">approved</p>
                                                         @endif

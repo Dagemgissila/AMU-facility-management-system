@@ -35,7 +35,7 @@
 <li class="nav-item {{Request::is('technician/request-item') ? 'bg-info font-weight-bold' : ''}}"">
     <a class="nav-link" href="">
         <i class="fas fa-fw fa-file"></i>
-        <span>View Request Item</span>
+        <span>Approved Request Item</span>
     </a>
 </li>
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ManagerItem;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboard;
 use App\Http\Controllers\Changepassword;
@@ -79,6 +80,10 @@ Route::get('manager/work/view-approved-work',[ManagerWorkOrderController::class,
 Route::get('manager/work/view-completed',[ManagerWorkOrderController::class,'ViewCompleteWork'])->name('manager.ViewCompleteWork');
 Route::get('manager/changepassword',[ManagerPasswordchange::class,'index'])->name('manager.changepassword');
 Route::post('manager/changepassword',[ManagerPasswordchange::class,'changePassword'])->name("manager.changePss");
+
+Route::get('manager/item-request',[ManagerItem::class,"index"])->name("manager.viewRequestItem");
+Route::post("manager/approve-item-request",[ManagerItem::class,"approveItem"])->name("manager.approveItem");
+Route::post("manager/approve-reject-item",[ManagerItem::class,"rejectItem"])->name("manager.rejecttItem");
 });
 
 
@@ -99,7 +104,7 @@ Route::post('users/changepassword',[UserrPasswordchange::class,"changepassword"]
 Route::middleware(['auth', 'user-role:technician'])->group(function () {
 Route::get('/technician/dashboard',[TechnicianDashboardController::class,'index'])->name('technician.dashboard');
 Route::get('/technician/request-item',[TechnicianItemController::class,'index'])->name('technician.requestItem');
-Route::post('technician/request-item',[TechnicianItemController::class,'requestItme'])->name('technician.addItem');
+Route::post('technician/request-item',[TechnicianItemController::class,'requestItme'])->name('technician.request');
 Route::get("technician/my-assigned-work",[TechnicianAssignWorkController::class,'index'])->name('technician.assignedWork');
 Route::get("technician/notification",[TechnicianNotificationController::class,'index'])->name('technician.notification');
 Route::get("tehcnician/change-password",[TechnicianDashboardController::class,'changePpage'])->name('technician.changePassword');
