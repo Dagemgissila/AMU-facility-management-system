@@ -22,7 +22,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="" style="background-color: rgb(228, 238, 240)">
 
     <div class="container">
 

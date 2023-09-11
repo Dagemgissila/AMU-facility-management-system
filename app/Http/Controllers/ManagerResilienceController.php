@@ -7,6 +7,9 @@ use App\Models\Resilience;
 class ManagerResilienceController extends Controller
 {
    public function viewResilience(){
+    if (auth()->user()->status == 2) {
+        return redirect()->route("manager.changepassword");
+    }
     $resilience=Resilience::all();
     return view('facilityM.resilience',compact('resilience'));
    }

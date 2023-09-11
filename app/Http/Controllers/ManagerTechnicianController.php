@@ -12,12 +12,18 @@ use Illuminate\Support\Facades\Hash;
 class ManagerTechnicianController extends Controller
 {
    public function index(){
+    if (auth()->user()->status == 2) {
+        return redirect()->route("manager.changepassword");
+    }
     $technician=Technician::query()->orderBy("created_at","desc")->get();
 
     return view('facilityM.technician',compact('technician'));
    }
 
    public function addTechnician(Request $request){{
+    if (auth()->user()->status == 2) {
+        return redirect()->route("manager.changepassword");
+    }
     $this->validate($request,[
         'firstname'=>'required',
         'lastname'=>'required',
@@ -29,6 +35,7 @@ class ManagerTechnicianController extends Controller
     $user->email=$request->email;
     $user->password=Hash::make(12345678);
     $user->role="technician";
+    $user->status=2;
     $user->save();
 
     $technician=new Technician;
@@ -50,6 +57,8 @@ class ManagerTechnicianController extends Controller
         'work_id'=>'required'
     ]);
 
+  $techId=Technician::query()->where("id",$request->technician_id)->first();
+ // dd($techId->user_id);
     $worktechnicain=new WorkTechnician;
     $worktechnicain->work_id=$request->work_id;
     $worktechnicain->technician_id=$request->technician_id;
@@ -58,6 +67,8 @@ class ManagerTechnicianController extends Controller
     Workorder::whereId($request->work_id)->update([
       'status'=>1
     ]);
+
+
 
     return redirect()->route("manager.ViewApprovedWork")->with("message","technician assign successfully");
 

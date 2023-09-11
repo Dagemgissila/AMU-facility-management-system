@@ -2,8 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboard;
+use App\Http\Controllers\Changepassword;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\StoreManagerItem;
+use App\Http\Controllers\UserrPasswordchange;
+use App\Http\Controllers\ManagerPasswordchange;
+use App\Http\Controllers\StoreManagerDashboard;
 use App\Http\Controllers\ManagerStaffController;
 use App\Http\Controllers\UserWorkorderController;
 use App\Http\Controllers\StaffDashboardController;
@@ -14,6 +19,7 @@ use App\Http\Controllers\ManagerResilienceController;
 use App\Http\Controllers\ManagerTechnicianController;
 use App\Http\Controllers\TechnicianDashboardController;
 use App\Http\Controllers\TechnicianAssignWorkController;
+use App\Http\Controllers\TechnicianNotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +59,7 @@ Route::get('manager/dashboard',[ManagerDashboardController::class,'index'])->nam
 Route::get('manager/user/addstaf',[ManagerStaffController::class,'addstaff'])->name('addstaff');
 Route::get('manager/user/newUser',[ManagerStaffController::class,'newUser'])->name('newUser');
 Route::post('manager/newUser',[ManagerStaffController::class,'appproveUser'])->name('manager.approveUser');
+Route::post("manager/rejectUser",[ManagerStaffController::class,'reject'])->name('manager.rejectUser');
 //Route::post('manager/addstaf',[ManagerStaffController::class,'store'])->name('addstaff');
 Route::get('manager/user/viewstaff',[ManagerStaffController::class,'viewstaff'])->name('viewstaff');
 Route::get('/editstaff/{id}',[ManagerStaffController::class,'show'])->name('editstaff');
@@ -70,6 +77,8 @@ Route::post('manager/assign-technician',[ManagerTechnicianController::class,'Ass
 
 Route::get('manager/work/view-approved-work',[ManagerWorkOrderController::class,'ViewApprovedWork'])->name('manager.ViewApprovedWork');
 Route::get('manager/work/view-completed',[ManagerWorkOrderController::class,'ViewCompleteWork'])->name('manager.ViewCompleteWork');
+Route::get('manager/changepassword',[ManagerPasswordchange::class,'index'])->name('manager.changepassword');
+Route::post('manager/changepassword',[ManagerPasswordchange::class,'changePassword'])->name("manager.changePss");
 });
 
 
@@ -80,6 +89,8 @@ Route::get('/user/requestwork',[UserWorkorderController::class,'index'])->name('
 Route::post('/user/requestwork',[UserWorkorderController::class,'store'])->name("requestWork");
 Route::get('user/workorder-status',[UserWorkorderController::class,"workorderStaus"])->name('user.workOrderStatus');
 Route::post('users/confirm-work',[UserWorkorderController::class,'confirmWork'])->name('user.confirmWork');
+Route::get('users/changepassword',[UserrPasswordchange::class,'index'])->name('user.changePassword');
+Route::post('users/changepassword',[UserrPasswordchange::class,"changepassword"])->name("user.changePss");
 
 });
 
@@ -90,5 +101,19 @@ Route::get('/technician/dashboard',[TechnicianDashboardController::class,'index'
 Route::get('/technician/request-item',[TechnicianItemController::class,'index'])->name('technician.requestItem');
 Route::post('technician/request-item',[TechnicianItemController::class,'requestItme'])->name('technician.addItem');
 Route::get("technician/my-assigned-work",[TechnicianAssignWorkController::class,'index'])->name('technician.assignedWork');
+Route::get("technician/notification",[TechnicianNotificationController::class,'index'])->name('technician.notification');
+Route::get("tehcnician/change-password",[TechnicianDashboardController::class,'changePpage'])->name('technician.changePassword');
+Route::post('technician/change-password',[Changepassword::class,'changepassword'])->name('technician.changePss');
+});
+
+Route::middleware(['auth', 'user-role:store manager'])->group(function () {
+
+    Route::get("store-manager/dashboard",[StoreManagerDashboard::class,'index'])->name("storeM.dashboard");
+    Route::get("store-manager/items",[StoreManagerItem::class,'index'])->name("storeM.viewItem");
+    Route::post("store-manager/items",[StoreManagerItem::class,'addItem'])->name("storeM.addItem");
+    Route::post("store-manager/editItem",[StoreManagerItem::class,"editItem"])->name("storeM.editItem");
+    Route::post("store-manager/edit",[StoreManagerItem::class,"edit"])->name("storeM.edit");
 
 });
+
+

@@ -8,7 +8,7 @@
     <hr class="sidebar-divider my-0">
 
     <li class="nav-item active ">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{route('staff.dashboard')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -20,27 +20,26 @@
     <div class="sidebar-heading">
 
     </div>
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item ">
-        <a class="nav-link collapsed " href="{{route('user.requestWork')}}"  data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
+    <li class="nav-item {{Request::is('user/requestwork') ? 'bg-info font-weight-bold' : ''}}">
+        <a class="nav-link" href="{{route('user.requestWork')}}">
+            <i class="fas fa-wrench"></i>
             <span>Request Work Order</span>
         </a>
-
-        <a class="nav-link collapsed " href="{{route('user.workOrderStatus')}}"  data-target="#collapseTwo"
-        aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-fw fa-cog"></i>
-        <span>View Work Order status</span>
-    </a>
-
     </li>
+
+    <li class="nav-item {{Request::is('user/workorder-status') ? 'bg-info font-weight-bold' : ''}}">
+        <a class="nav-link" href="{{route('user.workOrderStatus')}}">
+            <i class="fas fa-wrench"></i>
+            <span>View Work Order status</span>
+        </a>
+    </li>
+
+
     <!-- Divider -->
     <!-- Nav Item - Pages Collapse Menu -->
     <!-- Nav Item - Charts -->
-    <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+    <li class="nav-item {{Request::is('users/changepassword') ? 'bg-info font-weight-bold' : ''}}">
+        <a class="nav-link" href="{{route('user.changePassword')}}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Change Password</span></a>
     </li>

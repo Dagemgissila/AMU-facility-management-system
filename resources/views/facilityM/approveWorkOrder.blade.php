@@ -62,7 +62,7 @@
 
 
                             @foreach ($technician as $tech)
-                                 <option value="{{$tech->id}}">{{$tech->firstname . " " .$tech->lastname}}</option>
+                                 <option value="{{$tech->id}}">{{$tech->firstname . " " .$tech->lastname ." /  " . $tech->role}}</option>
                             @endforeach
 
                             @endif

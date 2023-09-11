@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\Staff;
+use App\Models\Workorder;
+use App\Models\WorkTechnician;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,5 +27,7 @@ class AppServiceProvider extends ServiceProvider
             $staff = Staff::all();
             $view->with('staff', $staff);
         });
+
+
     }
 }

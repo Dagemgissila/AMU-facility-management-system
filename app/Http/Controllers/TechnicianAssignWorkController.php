@@ -9,6 +9,9 @@ use App\Models\WorkTechnician;
 class TechnicianAssignWorkController extends Controller
 {
     public function index(){
+        if (auth()->user()->status == 2) {
+            return redirect()->route("technician.changePassword");
+        }
         $myId=auth()->user()->technician->id;
 
 
@@ -16,13 +19,12 @@ class TechnicianAssignWorkController extends Controller
           where("technician_id",$myId)->get();
 
                foreach($WorkTechnician as $rr){
-                dd($rr->work_id);
-          $workorders=Workorder::query()->where("status",1)->where("id","1")->get();
+
+          $workorders[]=Workorder::query()->where("status",1)->where("id",$rr->work_id)->get();
 
 
-          dd($workorders);
         }
 
-        return view('technician.assignedWork');
+        return view('technician.assignedWork',compact("workorders"));
     }
 }

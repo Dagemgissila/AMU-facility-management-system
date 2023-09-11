@@ -21,15 +21,48 @@
                                     <thead>
                                         <tr> <th>Id</th>
                                              <th>Requested BY</th>
+                                             <th>User PhoneNumber</th>
+                                             <th>Building Name</th>
+                                             <th>Building Number</th>
                                              <th>Work type</th>
                                              <th>Work Required</th>
-                                             <th> Status</th>
+
                                              <th>Approved By User?</th>
 
 
 
                                         </tr>
+
                                     </thead>
+                                    <tbody>
+                                        @if(count($workorders) > 0)
+                                        @php
+                                        $i = 0;
+                                        @endphp
+                                       @foreach ($workorders as $work)
+                                       <tr>
+                                           <td>{{ ++$i }}</td>
+                                           <td>{{ $work->first()->staff->firstname . " " . $work->first()->staff->lastname }}</td>
+                                           <td>{{ $work->first()->staff->phone_number }}</td>
+                                           <td> {{$work->first()->staff->building_name }}</td>
+                                           <td> {{$work->first()->staff->building_number }}</td>
+                                           <td>{{ $work->first()->work_type }}</td>
+                                           <td>{{ $work->first()->work_required }}</td>
+                                           <td>
+                                               @if ($work->first()->workapprove_status == 0)
+                                                     <p class="btn btn-danger">No</p>
+                                               @else
+                                                    <p class="btn btn-success">Yes</p>
+                                               @endif
+                                           </td>
+                                       </tr>
+                                   @endforeach
+                                        @else
+                                        <tr>
+                                            <td colspan="5">No assigned Work</td>
+                                        </tr>
+                                        @endif
+                                    </tbody>
 
 
                                 </table>

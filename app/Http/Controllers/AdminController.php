@@ -28,11 +28,11 @@ class AdminController extends Controller
             'confirm_password' => 'required|min:8|same:password',
         ]);
 
-        User::create([
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => 'admin',
-        ]);
+        $user=new User;
+        $user->email=$request->email;
+        $user->password=Hash::make($request->password);
+        $user->role="admin";
+        $user->save();
 
         return redirect('/')->with('message', 'You have registered successfully');
     }
@@ -48,9 +48,10 @@ class AdminController extends Controller
         $user->role=$request->role;
         $user->email=$request->email;
         $user->password=Hash::make(12345678);
+        $user->status=0;
         $user->save();
 
-        return back()->with('message', 'Account created successfully');
+        return back()->with('message', 'Account created successfully,default password 12345678');
     }
 
     public function viewaccount()
@@ -64,6 +65,7 @@ class AdminController extends Controller
     {
         User::whereId($request->userid)->update([
             'password' => Hash::make(12345678),
+            'status'=>2
         ]);
 
         return back()->with('message', 'Password reset successfully to 12345678');

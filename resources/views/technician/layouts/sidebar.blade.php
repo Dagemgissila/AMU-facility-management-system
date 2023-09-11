@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" >
         <div class="sidebar-brand-icon rotate-n-15">
 
         </div>
@@ -11,46 +11,45 @@
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
-    <!-- Nav Item - Dashboard -->
     <li class="nav-item active ">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{route('technician.dashboard')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>Dashboard</span>
+        </a>
     </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-
-
-    <!-- Nav Item - Pages Collapse Menu -->
-
-    <li class="nav-item">
+    <!-- Nav Item - Requested Item -->
+    <li class="nav-item {{Request::is('technician/request-item') ? 'bg-info font-weight-bold' : ''}}"">
         <a class="nav-link" href="{{route('technician.requestItem')}}">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span> Requested Item</span></a>
+            <i class="fas fa-fw fa-file"></i>
+            <span>Requested Item</span>
+        </a>
     </li>
 
-    <li class="nav-item">
+
+
+    <li class="nav-item {{Request::is('technician/my-assigned-work') ? 'bg-info font-weight-bold' : ''}}">
         <a class="nav-link" href="{{route('technician.assignedWork')}}">
+            <i class="fas fa-wrench"></i>
+            <span>My Assigned Work</span>
+
+        </a>
+    </li>
+
+    <!-- Nav Item - Notification -->
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('technician.notification')}}">
+            <i class="fas fa-fw fa-bell"></i>
+            <span>Notification</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Change Password -->
+    <li class="nav-item  {{Request::is('tehcnician/change-password') ? 'bg-info font-weight-bold' : ''}}">
+        <a class="nav-link" href="{{route('technician.changePassword')}}">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span> My Assigned Work</span></a>
-    </li>
-
-    <li class="nav-item  ">
-        <a class="nav-link" href="{{route('manager.ViewResilience')}}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Notification</span></a>
-    </li>
-
-
-    <li class="nav-item  ">
-        <a class="nav-link" href="{{route('manager.ViewResilience')}}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Change Password</span></a>
     </li>
-
-
 
 
 

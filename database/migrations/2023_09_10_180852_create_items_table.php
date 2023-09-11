@@ -13,11 +13,9 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('technician_id'); // foreign key column
-            $table->foreign('technician_id')->references('id')->on('technicians')->onDelete('cascade')->onUpdate('cascade');
-            $table->string("material_required");
-            $table->string("quantity");
+            $table->string("material_name");
             $table->string("unit");
+            $table->string("amount");
             $table->boolean("status")->default(0);
             $table->timestamps();
         });

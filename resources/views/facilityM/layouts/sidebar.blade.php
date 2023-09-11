@@ -28,6 +28,12 @@
             aria-expanded="{{ Request::is('manager/user/*') ? 'true' : 'false' }}" aria-controls="collapseOne">
             <i class="fas fa-users"></i>
             <span>Manage Users</span>
+            @php
+            $count = $staff->where('status', 0)->count();
+            @endphp
+           @if ($count > 0)
+            <span class="badge bg-danger text-white">{{ $count }}</span>
+            @endif
         </a>
         <div id="collapseOne" class="collapse {{ Request::is('manager/user/*') ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
@@ -71,6 +77,13 @@
                 <a class="collapse-item {{Request::is('manager/work/view-completed') ? 'bg-info text-white font-weight-bold' : ''}}" href="{{route('manager.ViewCompleteWork')}}">View Completed Work</a>
             </div>
         </div>
+    </li>
+
+    <li class="nav-item {{Request::is('manager/changepassword') ? 'bg-info font-weight-bold' : ''}}">
+        <a class="nav-link" href="{{route('manager.changepassword')}}">
+            <i class="fas fa-building"></i>
+            <span>change password</span>
+        </a>
     </li>
 
     <!-- Sidebar Toggler (Sidebar) -->

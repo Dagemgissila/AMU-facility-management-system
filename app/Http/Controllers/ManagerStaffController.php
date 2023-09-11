@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Hash;
 class ManagerStaffController extends Controller
 {
     public function addstaff(){
+        if (auth()->user()->status == 2) {
+            return redirect()->route("manager.changepassword");
+        }
         return view('facilityM.addstaff');
     }
 
@@ -45,12 +48,18 @@ class ManagerStaffController extends Controller
     }
 
     public function viewstaff(){
+        if (auth()->user()->status == 2) {
+            return redirect()->route("manager.changepassword");
+        }
           $staffs=Staff::query()->where('status',1)->get();
 
           return view('facilityM.viewstaff',compact('staffs'));
     }
 
     public function newUser(){
+        if (auth()->user()->status == 2) {
+            return redirect()->route("manager.changepassword");
+        }
         $staffs=Staff::query()->where('status',0)->get();
 
         return view('facilityM.newuser',compact('staffs'));
@@ -61,13 +70,34 @@ class ManagerStaffController extends Controller
             'status'=>1
            ]);
 
+           User::whereId($request->user_id)->update([
+             "status"=>1
+           ]);
+
+
            return redirect()->route('viewstaff')->with("message","approved succesfull");
      }
     public function show($id){
+        if (auth()->user()->status == 2) {
+            return redirect()->route("manager.changepassword");
+        }
        $user=User::find($id);
 
       return view('facilityM.editsatff',compact('user'));
     }
+
+    public function reject(Request $request){
+        $user = User::find($request->user_id);
+
+        if ($user) {
+            $user->delete();
+            return back()->with("message", "User is rejected");
+        } else {
+            return back()->with("message", "User not found");
+        }
+    }
+
+
 
     public function editstaff(Request $request,$id){
         $staff=Staff::find($id);

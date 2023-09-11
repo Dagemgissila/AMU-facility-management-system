@@ -26,25 +26,39 @@ class LoginController extends Controller
         ]);
 
         if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
-            if(auth()->user()->role == 'admin'){
-                return redirect()->route('admin.dashboard');
-            }
+            if(auth()->user()->status==0){
+                return back()->with("error","your account is not approved");
+             }
 
-            else if(auth()->user()->role == 'technician'){
-                return redirect()->route('technician.dashboard');
-            }
+             else{
+                if(auth()->user()->role == 'admin'){
 
-            else if(auth()->user()->role == 'user'){
+                    return redirect()->route('admin.dashboard');
+                }
 
-                    return redirect()->route('staff.dashboard');
-            }
+                else if(auth()->user()->role == 'technician'){
+                    if (auth()->user()->status == 2) {
+                        return redirect()->route("technician.changePassword");
+                    }
+                    return redirect()->route('technician.dashboard');
+                }
 
-            else if(auth()->user()->role == 'store manager'){
+                else if(auth()->user()->role == 'user'){
 
-            }
-            else if(auth()->user()->role == 'facility manager'){
-               return redirect()->route('manager.dashboard');
-            }
+
+                        return redirect()->route('staff.dashboard');
+                }
+
+                else if(auth()->user()->role == 'store manager'){
+                      return redirect()->route("storeM.dashboard");
+                }
+                else if(auth()->user()->role == 'facility manager'){
+                    if(auth()->user()->status==0){
+                        return redirect()->route('manager.changepassword');
+                     }
+                   return redirect()->route('manager.dashboard');
+                }
+             }
 
         }
 
@@ -74,33 +88,34 @@ class LoginController extends Controller
             'faculty' => 'required',
             'university_id' => 'required|image|mimes:jpeg,png,gif|max:2048',
             'email' => 'required',
-            'password' => 'required|min:8',
+            'password' => 'required|min:8|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
             'confirm_password' => 'required|min:8|same:password'
         ]);
 
-        $user = User::create([
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => 'user',
-            'status' => 0
-        ]);
+        $user=new User;
+        $user->email=$request->email;
+        $user->password=Hash::make($request->password);
+        $user->role="user";
+        $user->status=0;
+        $user->save();
 
         $filename = $this->uploadUniversityId($request);
+       $staff=new Staff;
+       $staff->user_id=$user->id;
+       $staff->firstname=$request->firstname;
+       $staff->middlename=$request->middlename;
+       $staff->lastname=$request->lastname;
+       $staff->phone_number=$request->phone_number;
+       $staff->colleage=$request->colleage;
+       $staff->faculty=$request->faculty;
+       $staff->building_name=$request->building_name;
+       $staff->building_number=$request->building_number;
+       $staff->university_id=$filename;
+       $staff->save();
 
-        $staff = Staff::create([
-            'user_id' => $user->id,
-            'firstname' => $request->firstname,
-            'middlename' => $request->middlename,
-            'lastname' => $request->lastname,
-            'phone_number' => $request->phone_number,
-            'colleage' => $request->colleage,
-            'faculty' => $request->faculty,
-            'building_name' => $request->building_name,
-            'building_number' => $request->building_number,
-            'university_id' => $filename
-        ]);
 
-        return back()->with('message', 'You have registered successfully. Please wait until your account is approved.');
+
+        return redirect()->route("user.login")->with('message', 'You have registered successfully. Please wait until your account is approved.');
     }
 
     private function uploadUniversityId(Request $request)

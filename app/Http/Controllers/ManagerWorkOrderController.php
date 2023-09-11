@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 class ManagerWorkOrderController extends Controller
 {
     public function index(){
+        if (auth()->user()->status == 2) {
+            return redirect()->route("manager.changepassword");
+        }
         $works = Workorder::query()
         ->where("status", 0)
         ->orderBy("created_at", 'desc')
@@ -21,6 +24,9 @@ class ManagerWorkOrderController extends Controller
     }
 
     public function viewApprovePage(Request $request){
+        if(auth()->user()->status==0){
+            return redirect()->route('manager.changepassword');
+         }
         $work_id=$request->work_id;
         $work_type=$request->work_type;
         $staff_id=$request->staff_id;
@@ -28,12 +34,15 @@ class ManagerWorkOrderController extends Controller
 
         $staff=Staff::query()->where('id',$staff_id)->first();
 
-        $technician=Technician::query()->where('role',$work_type)->get();
+        $technician=Technician::all();
 
          return view('facilityM.approveWorkOrder',compact('staff','technician','work_type','work_id'));
     }
 
     public function ViewApprovedWork(){
+        if (auth()->user()->status == 2) {
+            return redirect()->route("manager.changepassword");
+        }
         $works = Workorder::query()->where("status", 1)->get();
     $technician_firstname = null;
     $technician_lastname = null;
@@ -58,6 +67,9 @@ class ManagerWorkOrderController extends Controller
     }
     public function ViewCompleteWork()
     {
+        if (auth()->user()->status == 2) {
+            return redirect()->route("manager.changepassword");
+        }
         $works = Workorder::query()->where("status", 1)->where("workapprove_status", 1)->get();
 
         $technician_firstname = null;

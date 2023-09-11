@@ -3,19 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\TechnicianNotificationController;
 
-class TechnicianDashboardController extends Controller
+class TechnicianNotificationController extends Controller
 {
-    //
     public function index(){
         if (auth()->user()->status == 2) {
             return redirect()->route("technician.changePassword");
         }
-        return view('technician.dashboard');
-    }
-
-    public function changePpage(){
-
-        return view("technician.changepassword");
+        return view('technician.notification');
     }
 }

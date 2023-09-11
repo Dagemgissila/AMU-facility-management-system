@@ -22,7 +22,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="" style="background-color: rgb(228, 238, 240)">
 
     <div class="container">
 
@@ -90,7 +90,7 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="phone_number">Phone Number</label>
-                                                    <input type="number" class="form-control" name="phone_number" placeholder="enter yout phone number" id="phonenumber">
+                                                    <input type="number" class="form-control" value="{{ old('phone_number')}}" name="phone_number" placeholder="enter yout phone number" id="phonenumber">
                                                 </div>
                                                 @if ($errors->has('phone_number'))
                                                      <div class="text-danger">{{$errors->first('phone_number')}}</div>
@@ -101,9 +101,8 @@
                                                     <label for="colleage">Colleage</label>
                                                     <select class="form-control" required name="colleage" id="colleage">
                                                         <option value="">Select Your Colleage</option>
-                                                        <option value="Amit">Amit</option>
-                                                        <option value="Amit">Awit</option>
-
+                                                        <option value="Amit" {{ old('colleage') == 'Amit' ? 'selected' : '' }}>Amit</option>
+                                                        <option value="Awit" {{ old('colleage') == 'Awit' ? 'selected' : '' }}>Awit</option>
                                                     </select>
                                                     @if ($errors->has('colleage'))
                                                         <div class="text-danger">{{ $errors->first('colleage') }}</div>
@@ -114,17 +113,17 @@
                                                 <div class="form-group">
                                                     <label for="building">Building Name</label>
                                                     <select class="form-control" required name="building_name" id="building">
-                                                        @if ($resilience->count()> 0)
-                                                        <option value="">Select Your Building</option>
-                                                             @foreach ($resilience as $res)
-
-                                                        <option value="{{$res->building_name}}">{{$res->building_name}}</option>
-
-                                                        @endforeach
+                                                        @if ($resilience->count() > 0)
+                                                            <option value="">Select Your Building</option>
+                                                            @foreach ($resilience as $res)
+                                                                <option value="{{ $res->building_name }}" {{ old('building_name') == $res->building_name ? 'selected' : '' }}>{{ $res->building_name }}</option>
+                                                            @endforeach
+                                                        @else
+                                                            <option value="">No Building is Found</option>
                                                         @endif
                                                     </select>
-                                                    @if ($errors->has('building'))
-                                                        <div class="text-danger">{{ $errors->first('building') }}</div>
+                                                    @if ($errors->has('building_name'))
+                                                        <div class="text-danger">{{ $errors->first('building_name') }}</div>
                                                     @endif
                                                 </div>
                                             </div>
@@ -135,17 +134,17 @@
                                                 <div class="form-group">
                                                     <label for="building">Building Number</label>
                                                     <select class="form-control" required name="building_number" id="building">
-                                                        @if ($resilience->count()> 0)
-                                                        <option value="">Select Your Building</option>
-                                                             @foreach ($resilience as $res)
-
-                                                        <option value="{{$res->building_name}}">{{$res->building_number}}</option>
-
-                                                        @endforeach
+                                                        @if ($resilience->count() > 0)
+                                                            <option value="">Select Your Building</option>
+                                                            @foreach ($resilience as $res)
+                                                                <option value="{{ $res->building_number }}" {{ old('building_number') == $res->building_number ? 'selected' : '' }}>{{ $res->building_number }}</option>
+                                                            @endforeach
+                                                        @else
+                                                            <option value="">No Building Number Found</option>
                                                         @endif
                                                     </select>
-                                                    @if ($errors->has('building'))
-                                                        <div class="text-danger">{{ $errors->first('building') }}</div>
+                                                    @if ($errors->has('building_number'))
+                                                        <div class="text-danger">{{ $errors->first('building_number') }}</div>
                                                     @endif
                                                 </div>
                                             </div>
@@ -153,15 +152,15 @@
                                                 <div class="form-group">
                                                     <div class="form-group">
                                                         <label for="faculty">Faculty</label>
-                                                        <select name="faculty"  value="{{old('faculty')}}" class="form-control" required>
+                                                        <select name="faculty" class="form-control" required>
                                                             <option value="">Select Your faculty</option>
-                                                            <option value="Faculty of Computing & Software Enginering">Faculty of Computing & Software Enginering</option>
-                                                            <option value="Electrical & Computing Engineering">Electrical & Computing Engineering</option>
+                                                            <option value="Faculty of Computing & Software Enginering" {{ old('faculty') == 'Faculty of Computing & Software Enginering' ? 'selected' : '' }}>Faculty of Computing & Software Enginering</option>
+                                                            <option value="Electrical & Computing Engineering" {{ old('faculty') == 'Electrical & Computing Engineering' ? 'selected' : '' }}>Electrical & Computing Engineering</option>
                                                         </select>
                                                     </div>
                                                     @if ($errors->has('faculty'))
-                                                    <div class="text-danger">{{ $errors->first('faculty') }}</div>
-                                                @endif
+                                                        <div class="text-danger">{{ $errors->first('faculty') }}</div>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -182,7 +181,7 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="email">Email</label>
-                                                    <input type="email" class="form-control" placeholder="email" name="email" id="email"/>
+                                                    <input type="email" class="form-control" value="{{old('email')}}" placeholder="email" name="email" id="email"/>
                                                 </div>
                                                 @if ($errors->has('email'))
                                                     <div class="text-danger">{{ $errors->first('email') }}</div>

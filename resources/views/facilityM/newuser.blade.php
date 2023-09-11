@@ -42,7 +42,7 @@
                                    <tr>
                                     <td>{{++$i}}</td>
                                     <td>{{$staff->user->email}}</td>
-                                    <td>{{$staff->firstname. " " . $staff->middlename ."".$staff->lastname}}</td>
+                                    <td>{{$staff->firstname. " " . $staff->middlename ." ".$staff->lastname}}</td>
                                     <td>{{$staff->colleage}}</td>
                                     <td>{{$staff->faculty}}</td>
                                     <td>{{$staff->building_name}}</td>
@@ -55,11 +55,20 @@
 
 
                                     <td class="">
-                                        <form class="mx-2" action="{{route('manager.approveUser')}}" method="post">
-                                            @csrf
-                                            <input type="text" hidden name="staff_id" value="{{$staff->id}}" id="">
-                                            <button class="btn btn-danger">Approve</button>
-                                        </form>
+                                        <div class="d-flex">
+                                            <form class="mx-2" action="{{route("manager.rejectUser")}}"  method="post" >
+                                                @csrf
+                                                <input type="hidden" hidden name="staff_id" value="{{$staff->id}}" id="">
+                                                <input type="hidden" hidden name="user_id" value="{{$staff->user->id}}">
+                                                <button class="btn btn-danger">Rejecct </button>
+                                            </form>
+                                            <form class="mx-2" action="{{route('manager.approveUser')}}" method="post">
+                                                @csrf
+                                                <input type="hidden" hidden name="staff_id" value="{{$staff->id}}" id="">
+                                                <input type="hidden" hidden name="user_id" value="{{$staff->user->id}}">
+                                                <button class="btn btn-danger">Approve</button>
+                                            </form>
+                                        </div>
                                     </td>
                                    </tr>
                                    @endforeach()

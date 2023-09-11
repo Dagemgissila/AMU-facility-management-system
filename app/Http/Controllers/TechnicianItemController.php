@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 class TechnicianItemController extends Controller
 {
     public function index(){
+        if (auth()->user()->status == 2) {
+            return redirect()->route("technician.changePassword");
+        }
         $items=Item::query()->orderBy("created_at","desc")->get();
         return view('technician.requestItem',compact("items"));
     }
