@@ -21,6 +21,7 @@
                                     <thead>
                                         <tr> <th>Id</th>
                                              <th>Requested BY</th>
+                                             <th>Role</th>
                                              <th>Material Name</th>
                                              <th>Unit</th>
                                              <th>Quantity</th>
@@ -41,7 +42,8 @@
 
                                   <tr>
                                     <td>{{++$i}}</td>
-                                    <td>{{$item->technician->firstname ." " . $item->technician->middlename}}</td>
+                                    <td>{{$item->technician->firstname ." " . $item->technician->lastname}}</td>
+                                    <td>{{$item->technician->role}}</td>
                                     <td>{{$item->items->material_name}}</td>
                                     <td>{{$item->items->unit}}</td>
                                     <td>{{$item->quantity}}</td>
@@ -56,19 +58,8 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <div class="d-flex gap-1">
-                                            <form action="{{route('manager.approveItem')}}" method="post">
-                                                @csrf
-                                                <input type="hidden" name="item_id" value="{{$item->id}}" id="">
-                                                <button type="submit" class="btn btn-primary " @if (($item->status==1) || ($item->status==2)) disabled @endif>Approve</button>
-                                            </form>
 
-                                            <form action="{{route('manager.rejecttItem')}}" method="post">
-                                                @csrf
-                                                <input type="hidden" name="item_id" value="{{$item->id}}">
-                                                <button type="submit" class="btn btn-danger mx-1 " @if (($item->status==1) || ($item->status==2)) disabled @endif>Reject</button>
-                                            </form>
-                                        </div>
+                                        <button class="btn btn-primary">View</button>
                                     </td>
                                   </tr>
 

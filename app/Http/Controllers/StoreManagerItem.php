@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Requestitem;
 use Illuminate\Http\Request;
 
 class StoreManagerItem extends Controller
@@ -50,5 +51,12 @@ class StoreManagerItem extends Controller
         ]);
 
         return redirect()->route("storeM.viewItem")->with("message","update succesfully");
+    }
+
+    public function viewApproveItem(){
+
+        $requestItem=Requestitem::query()->where("status",1)->orderBy("created_at","desc")->get();
+
+        return view("storemanager.approveditem",compact("requestItem"));
     }
 }

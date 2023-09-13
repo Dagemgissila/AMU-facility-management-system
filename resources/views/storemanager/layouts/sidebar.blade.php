@@ -23,7 +23,7 @@
 
 
  <!-- Nav Item - Requested Item -->
- <li class="nav-item {{Request::is('technician/request-item') ? 'bg-info font-weight-bold' : ''}}"">
+ <li class="nav-item {{Request::is('store-manager/items') ? 'bg-info font-weight-bold' : ''}}"">
     <a class="nav-link" href="{{route('storeM.viewItem')}}">
         <i class="fas fa-fw fa-file"></i>
         <span>Items</span>
@@ -32,8 +32,8 @@
 
 
 <!-- Nav Item - Requested Item -->
-<li class="nav-item {{Request::is('technician/request-item') ? 'bg-info font-weight-bold' : ''}}"">
-    <a class="nav-link" href="">
+<li class="nav-item {{Request::is('store-manager/view-approved-item') ? 'bg-info font-weight-bold' : ''}}">
+    <a class="nav-link" href="{{route('storeM.viewaAppovedItem')}}">
         <i class="fas fa-fw fa-file"></i>
         <span>Approved Request Item</span>
     </a>

@@ -4,6 +4,7 @@ use App\Http\Controllers\ManagerItem;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboard;
 use App\Http\Controllers\Changepassword;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StoreManagerItem;
@@ -34,9 +35,9 @@ use App\Http\Controllers\TechnicianNotificationController;
 */
 
 
-
-Route::get('/',[LoginController::class,'index'])->name('user.login');
-Route::post('/',[LoginController::class,'userlogin'])->name('user.login');
+Route::get("/",[HomeController::class,'index'])->name("home");
+Route::get('/login',[LoginController::class,'index'])->name('user.login');
+Route::post('/login',[LoginController::class,'userlogin'])->name('user.login');
 Route::get('/adminregister',[AdminController::class,'index'])->name('admin.register');
 Route::post('/adminregister',[AdminController::class,'registeradmin'])->name('admin.register');
 Route::get('/user/register',[LoginController::class,'registerPage'])->name('user.register');
@@ -109,6 +110,7 @@ Route::get("technician/my-assigned-work",[TechnicianAssignWorkController::class,
 Route::get("technician/notification",[TechnicianNotificationController::class,'index'])->name('technician.notification');
 Route::get("tehcnician/change-password",[TechnicianDashboardController::class,'changePpage'])->name('technician.changePassword');
 Route::post('technician/change-password',[Changepassword::class,'changepassword'])->name('technician.changePss');
+Route::get("technician/view-approved-item",[TechnicianItemController::class,'viewApproveItem'])->name("technician.viewaAppovedItem");
 });
 
 Route::middleware(['auth', 'user-role:store manager'])->group(function () {
@@ -118,7 +120,7 @@ Route::middleware(['auth', 'user-role:store manager'])->group(function () {
     Route::post("store-manager/items",[StoreManagerItem::class,'addItem'])->name("storeM.addItem");
     Route::post("store-manager/editItem",[StoreManagerItem::class,"editItem"])->name("storeM.editItem");
     Route::post("store-manager/edit",[StoreManagerItem::class,"edit"])->name("storeM.edit");
-
+    Route::get("store-manager/view-approved-item",[StoreManagerItem::class,'viewApproveItem'])->name("storeM.viewaAppovedItem");
 });
 
 

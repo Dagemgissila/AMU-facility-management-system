@@ -33,4 +33,8 @@ class TechnicianItemController extends Controller
 
     return back()->with("message","request send successfully");
     }
-}
+
+
+
+    }
+
