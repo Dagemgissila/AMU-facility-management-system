@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 class UserWorkorderController extends Controller
 {
     public function index(){
+        if (auth()->user()->status == 0) {
+            return redirect()->route("user.changePassword");
+        }
         return view('users.requestwork');
     }
 
@@ -32,6 +35,9 @@ class UserWorkorderController extends Controller
     }
 
     public function workorderStaus(){
+        if (auth()->user()->status == 0) {
+            return redirect()->route("user.changePassword");
+        }
         $user = auth()->user()->staff;
         $staffID = $user->id;
 
