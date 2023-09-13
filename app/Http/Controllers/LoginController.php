@@ -43,7 +43,6 @@ class LoginController extends Controller
 
                 else if(auth()->user()->role == 'user'){
 
-
                         return redirect()->route('staff.dashboard');
                 }
 
@@ -77,22 +76,31 @@ class LoginController extends Controller
             'firstname' => 'required',
             'middlename' => 'required',
             'lastname' => 'required',
-            'phone_number' => 'required|numeric|digits:10|unique:staff',
+            'phone_number' => 'required|numeric|digits:10|unique:staff|unique:staff',
             'colleage' => 'required',
             'building_name' => 'required',
             'building_number' => 'required',
             'faculty' => 'required',
-            'university_id' => 'required|image|mimes:jpeg,png,gif|max:2048',
-            'email' => 'required',
+            'university_id' => 'required|image|mimes:jpeg,png,gif',
+            'email' => 'required|unique:users',
             'password' => 'required|min:8|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
             'confirm_password' => 'required|min:8|same:password'
+        ], [
+            'email.required' => 'Please enter an email address.',
+            'email.unique' => 'This email address is already registered.',
+            'password.required' => 'Please enter a password.',
+            'password.min' => 'The password must be at least 8 characters long.',
+            'password.regex' => 'The password must include at least one lowercase letter, one uppercase letter, one numeric digit, and one special character.',
+            'confirm_password.required' => 'Please confirm your password.',
+            'confirm_password.min' => 'The confirm password must be at least 8 characters long.',
+            'confirm_password.same' => 'The confirm password does not match the password.',
         ]);
 
         $user=new User;
         $user->email=$request->email;
         $user->password=Hash::make($request->password);
         $user->role="user";
-        $user->status=0;
+        $user->status=2;
         $user->save();
 
         $filename = $this->uploadUniversityId($request);

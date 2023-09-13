@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 class StoreManagerItem extends Controller
 {
     public function index(){
+
+    if (auth()->user()->status == 0) {
+
+        return redirect()->route("storeM.changepassword");
+    }
         $items=Item::all();
         return view("storemanager.items",compact("items"));
     }
@@ -54,6 +59,11 @@ class StoreManagerItem extends Controller
     }
 
     public function viewApproveItem(){
+
+    if (auth()->user()->status == 0) {
+
+        return redirect()->route("storeM.changepassword");
+    }
 
         $requestItem=Requestitem::query()->where("status",1)->orderBy("created_at","desc")->get();
 

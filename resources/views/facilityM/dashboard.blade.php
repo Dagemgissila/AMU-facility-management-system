@@ -8,13 +8,13 @@
 </div>
 
 
-
+@if(session()->has('message'))
+<div class="bg-success text-white">
+  <p class="p-2 d-flex justify-content-center align-items-center">   {{session('message')}}</p>
+</div>
+@endif
 <div class="row">
-    @if(session()->has('message'))
-    <div class="bg-success text-white">
-      <p class="p-2 d-flex justify-content-center align-items-center">   {{session('message')}}</p>
-    </div>
-    @endif
+
     <!-- Earnings (Monthly) Card Example -->
     <!-- Total User -->
     <div class="col-xl-3 col-md-6 mb-4">

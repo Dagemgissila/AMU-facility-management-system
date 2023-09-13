@@ -8,23 +8,23 @@ use App\Models\WorkTechnician;
 
 class TechnicianAssignWorkController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         if (auth()->user()->status == 2) {
             return redirect()->route("technician.changePassword");
         }
-        $myId=auth()->user()->technician->id;
+        $myId = auth()->user()->technician->id;
 
+        $WorkTechnician = WorkTechnician::where("technician_id", $myId)->get();
+        $workorders = []; // Initialize an empty array
 
-        $WorkTechnician=WorkTechnician::query()->
-          where("technician_id",$myId)->get();
-
-               foreach($WorkTechnician as $rr){
-
-          $workorders[]=Workorder::query()->where("status",1)->where("id",$rr->work_id)->get();
-
-
+        foreach ($WorkTechnician as $rr) {
+            $workorder = Workorder::where("status", 1)->where("id", $rr->work_id)->first();
+            if ($workorder) {
+                $workorders[] = $workorder;
+            }
         }
 
-        return view('technician.assignedWork',compact("workorders"));
+        return view('technician.assignedWork', compact("workorders"));
     }
 }

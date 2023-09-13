@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Requestitem;
 use Illuminate\Http\Request;
 
 class TechnicianDashboardController extends Controller
 {
     //
     public function index(){
-        if (auth()->user()->status == 2) {
+        if (auth()->user()->status == 0) {
             return redirect()->route("technician.changePassword");
         }
-        return view('technician.dashboard');
+
+        $requestItem=Requestitem::query()->where("technician_id",auth()->user()->technician->userr->id)->count();
+
+        return view('technician.dashboard',compact('requestItem'));
     }
 
     public function changePpage(){

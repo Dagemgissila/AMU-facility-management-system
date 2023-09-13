@@ -33,7 +33,7 @@ class ManagerTechnicianController extends Controller
     $user->email=$request->email;
     $user->password=Hash::make(12345678);
     $user->role="technician";
-    $user->status=2;
+    $user->status=0;
     $user->save();
 
     $technician=new Technician;

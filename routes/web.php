@@ -117,7 +117,7 @@ Route::get("technician/view-approved-item",[TechnicianItemController::class,'vie
 
 Route::middleware(['auth', 'user-role:store manager'])->group(function () {
 
-    Route::get("store-manager/dashboard",[StoreManagerDashboard::class,'index'])->name("storeM.dashboard");
+
     Route::get("store-manager/items",[StoreManagerItem::class,'index'])->name("storeM.viewItem");
     Route::post("store-manager/items",[StoreManagerItem::class,'addItem'])->name("storeM.addItem");
     Route::post("store-manager/editItem",[StoreManagerItem::class,"editItem"])->name("storeM.editItem");

@@ -11,7 +11,7 @@
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
-    <li class="nav-item active ">
+    <li class="nav-item  {{Request::is('technician/dashboard') ? 'bg-info font-weight-bold' : ''}} ">
         <a class="nav-link" href="{{route('technician.dashboard')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
@@ -36,18 +36,12 @@
         </a>
     </li>
 
-    <!-- Nav Item - Notification -->
-    <li class="nav-item">
-        <a class="nav-link" href="{{route('technician.notification')}}">
-            <i class="fas fa-fw fa-bell"></i>
-            <span>Notification</span>
-        </a>
-    </li>
+
 
     <!-- Nav Item - Change Password -->
     <li class="nav-item  {{Request::is('tehcnician/change-password') ? 'bg-info font-weight-bold' : ''}}">
         <a class="nav-link" href="{{route('technician.changePassword')}}">
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class="fas fa-fw fa-lock"></i>
             <span>Change Password</span></a>
     </li>
 

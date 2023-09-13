@@ -24,6 +24,7 @@ class Changepassword extends Controller
             'status'=>1
         ]);
 
-        return back()->with("message","password change succesfully");
+        return redirect()->route("technician.dashboard")->with("message","password change succesfully");
+
     }
 }
