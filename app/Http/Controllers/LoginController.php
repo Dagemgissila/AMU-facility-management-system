@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Staff;
 use App\Models\Resilience;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -73,15 +74,15 @@ class LoginController extends Controller
     public function useRegister(Request $request)
     {
         $this->validate($request, [
+
             'firstname' => 'required',
             'middlename' => 'required',
             'lastname' => 'required',
-            'phone_number' => 'required|numeric|digits:10|unique:staff|unique:staff',
+            'phone_number' => 'required|numeric|digits:10|unique:staff',
             'campus' => 'required',
             'building_name' => 'required',
             'building_number' => 'required',
-            'house_number'=>'house_number|min:0',
-
+            'house_number' => 'required|min:0|unique:staff',
             'university_id' => 'required|image|mimes:jpeg,png,gif',
             'email' => 'required|unique:users',
             'password' => 'required|min:8|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
@@ -97,27 +98,47 @@ class LoginController extends Controller
             'confirm_password.same' => 'The confirm password does not match the password.',
         ]);
 
-        $user=new User;
-        $user->email=$request->email;
-        $user->password=Hash::make($request->password);
-        $user->role="user";
-        $user->status=2;
-        $user->save();
+        try {
+            DB::beginTransaction();
 
-        $filename = $this->uploadUniversityId($request);
-       $staff=new Staff;
-       $staff->user_id=$user->id;
-       $staff->firstname=$request->firstname;
-       $staff->middlename=$request->middlename;
-       $staff->lastname=$request->lastname;
-       $staff->phone_number=$request->phone_number;
-       $staff->campus=$request->campus;
-       $staff->house_number=$request->house_number;
+            $user = new User;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->role = "user";
+            $user->status = 2;
+            $user->save();
 
-       $staff->building_name=$request->building_name;
-       $staff->building_number=$request->building_number;
-       $staff->university_id=$filename;
-       $staff->save();
+            $resilience = Resilience::where("building_number", $request->building_number)->first();
+            $location = $resilience->location;
+
+            $filename = $this->uploadUniversityId($request);
+            $staff = new Staff;
+            $staff->user_id = $user->id;
+            $staff->firstname = $request->firstname;
+            $staff->middlename = $request->middlename;
+            $staff->lastname = $request->lastname;
+            $staff->phone_number = $request->phone_number;
+            $staff->campus = $request->campus;
+            $staff->house_number = $request->house_number;
+            $staff->location = $location;
+            $staff->building_name = $request->building_name;
+            $staff->building_number = $request->building_number;
+            $staff->university_id = $filename;
+            $staff->save();
+
+            DB::commit();
+
+            return redirect()->route("user.login")->with('message', 'You have registered successfully. Please wait until your account is approved.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            if ($e instanceof ValidationException) {
+                throw $e;
+            }
+
+            // Handle the exception and display an error message or perform any necessary actions.
+            return redirect()->back()->with('error', 'An error occurred while registering. Please try again later.');
+        }
 
 
 

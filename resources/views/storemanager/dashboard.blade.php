@@ -1,6 +1,11 @@
 @extends('storemanager.layouts.app')
 @section("content")
 <h1>Dashboard</h1>
+@if(session()->has('message'))
+<div class="bg-success text-white">
+  <p class="p-2 d-flex justify-content-center align-items-center">   {{session('message')}}</p>
+</div>
+@endif
 <div class="row">
       @if ($items->count() > 0)
       @foreach ($items as $item)

@@ -76,10 +76,22 @@
         aria-expanded="{{ Request::is('manager/work/*') ? 'true' : 'false' }}"  aria-controls="collapseTwo">
         <i class="fas fa-tasks"></i>
         <span>Manage Work</span>
+        @php
+        $count = $workorder->count();
+        @endphp
+       @if ($count > 0)
+        <span class="badge bg-danger text-white">{{ $count }}</span>
+        @endif
     </a>
         <div id="collapseTwo"  class="collapse {{ Request::is('manager/work/*') || Request::is('manager/work/view-work-request') ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item {{Request::is('manager/work/view-work-request') ? 'bg-info text-white font-weight-bold' : ''}}" href="{{route('manager.ViewWorkRequest')}}">View Work Requests</a>
+                <a class="collapse-item {{Request::is('manager/work/view-work-request') ? 'bg-info text-white font-weight-bold' : ''}}" href="{{route('manager.ViewWorkRequest')}}">View Work Requests
+                    @php
+                    $count = $workorder->count();
+                    @endphp
+                   @if ($count > 0)
+                    <span class="badge bg-danger text-white">{{ $count }}</span>
+                    @endif</a>
                 <a class="collapse-item {{Request::is('manager/work/view-approved-work') ? 'bg-info text-white font-weight-bold' : ''}}" href="{{route('manager.ViewApprovedWork')}}">View Approved Work</a>
                 <a class="collapse-item {{Request::is('manager/work/view-completed') ? 'bg-info text-white font-weight-bold' : ''}}" href="{{route('manager.ViewCompleteWork')}}">View Completed Work</a>
             </div>

@@ -24,6 +24,8 @@
                                              <th>User PhoneNumber</th>
                                              <th>Building Name</th>
                                              <th>Building Number</th>
+                                             <th>House Number</th>
+                                             <th>Location</th>
                                              <th>Work type</th>
                                              <th>Work Required</th>
 
@@ -46,6 +48,8 @@
                                            <td>{{ $work->first()->staff->phone_number }}</td>
                                            <td> {{$work->first()->staff->building_name }}</td>
                                            <td> {{$work->first()->staff->building_number }}</td>
+                                           <td> {{$work->first()->staff->house_number }}</td>
+                                           <td> {{$work->first()->staff->location }}</td>
                                            <td>{{ $work->first()->work_type }}</td>
                                            <td>{{ $work->first()->work_required }}</td>
                                            <td>

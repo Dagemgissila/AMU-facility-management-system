@@ -26,6 +26,7 @@
                                              <th>Faculty</th>
                                              <th>Building Name</th>
                                              <th>Building Number</th>
+                                             <th>Location</th>
                                              <th>Identity Card</th>
 
                                              <th>Action</th>
@@ -47,6 +48,7 @@
                                     <td>{{$staff->faculty}}</td>
                                     <td>{{$staff->building_name}}</td>
                                     <td>{{$staff->building_number}}</td>
+                                    <td>{{$staff->location}}</td>
                                     <td>
                                         <a href="{{ asset('storage/userID/' . $staff->university_id) }}" target="_blank" class="d-flex align-items-center justify-content-center">
                                         <img src="{{ asset('storage/userID/' . $staff->university_id) }}" class="img-fluid" style="width:30%;height:10%" alt="img">

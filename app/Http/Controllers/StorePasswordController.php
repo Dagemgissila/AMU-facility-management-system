@@ -28,6 +28,6 @@ class StorePasswordController extends Controller
             'status'=>1
         ]);
 
-        return back()->with("message","password change succesfuly");
+        return redirect()->route("storeM.dashboard")->with("message","password change succesfuly");
     }
 }

@@ -32,6 +32,12 @@
         <a class="nav-link" href="{{route('technician.assignedWork')}}">
             <i class="fas fa-wrench"></i>
             <span>My Assigned Work</span>
+            @php
+            $count = $workt->count();
+            @endphp
+           @if ($count > 0)
+            <span class="badge bg-danger text-white">{{ $count }}</span>
+            @endif</a>
 
         </a>
     </li>

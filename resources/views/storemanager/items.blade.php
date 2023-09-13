@@ -16,7 +16,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Unit</label>
-                        <input type="text" class="form-control" required name="unit" id="">
+                        <input type="text" class="form-control"  name="unit" id="">
                     </div>
                     <div class="form-group">
                         <label for="">amount</label>

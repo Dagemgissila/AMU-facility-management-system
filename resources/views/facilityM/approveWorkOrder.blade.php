@@ -24,6 +24,7 @@
                                     <th>Fullname</th>
                                     <th>Building Name</th>
                                     <th>Building Number</th>
+                                    <th>location</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -32,6 +33,7 @@
                                         <td>{{$st->firstname . ' ' . $st->lastname}}</td>
                                         <td>{{$st->building_name}}</td>
                                         <td>{{$st->building_number}}</td>
+                                        <td>{{$st->location}}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
