@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 class ManagerTechnicianController extends Controller
 {
    public function index(){
-    if (auth()->user()->status == 2) {
+    if (auth()->user()->status == 0) {
         return redirect()->route("manager.changepassword");
     }
     $technician=Technician::query()->orderBy("created_at","desc")->get();
@@ -21,9 +21,7 @@ class ManagerTechnicianController extends Controller
    }
 
    public function addTechnician(Request $request){{
-    if (auth()->user()->status == 2) {
-        return redirect()->route("manager.changepassword");
-    }
+
     $this->validate($request,[
         'firstname'=>'required',
         'lastname'=>'required',

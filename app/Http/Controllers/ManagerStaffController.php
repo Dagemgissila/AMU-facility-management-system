@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class ManagerStaffController extends Controller
 {
     public function addstaff(){
-        if (auth()->user()->status == 2) {
+        if (auth()->user()->status == 0) {
             return redirect()->route("manager.changepassword");
         }
         return view('facilityM.addstaff');
@@ -48,7 +48,7 @@ class ManagerStaffController extends Controller
     }
 
     public function viewstaff(){
-        if (auth()->user()->status == 2) {
+        if (auth()->user()->status == 0) {
             return redirect()->route("manager.changepassword");
         }
           $staffs=Staff::query()->where('status',1)->get();
@@ -57,7 +57,7 @@ class ManagerStaffController extends Controller
     }
 
     public function newUser(){
-        if (auth()->user()->status == 2) {
+        if (auth()->user()->status == 0) {
             return redirect()->route("manager.changepassword");
         }
         $staffs=Staff::query()->where('status',0)->get();

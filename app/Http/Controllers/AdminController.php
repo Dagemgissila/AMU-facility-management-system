@@ -32,6 +32,7 @@ class AdminController extends Controller
         $user->email=$request->email;
         $user->password=Hash::make($request->password);
         $user->role="admin";
+        $user->status=1;
         $user->save();
 
         return redirect('/')->with('message', 'You have registered successfully');

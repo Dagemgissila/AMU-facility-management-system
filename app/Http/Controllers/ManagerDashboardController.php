@@ -11,7 +11,8 @@ use Illuminate\Http\Request;
 class ManagerDashboardController extends Controller
 {
     public function index(){
-        if (auth()->user()->status == 2) {
+        if (auth()->user()->status == 0) {
+
             return redirect()->route("manager.changepassword");
         }
         $user=User::query()->where("role","user")->count();

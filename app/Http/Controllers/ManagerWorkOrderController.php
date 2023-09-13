@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class ManagerWorkOrderController extends Controller
 {
     public function index(){
-        if (auth()->user()->status == 2) {
+        if (auth()->user()->status == 0) {
             return redirect()->route("manager.changepassword");
         }
         $works = Workorder::query()
@@ -40,7 +40,7 @@ class ManagerWorkOrderController extends Controller
     }
 
     public function ViewApprovedWork(){
-        if (auth()->user()->status == 2) {
+        if (auth()->user()->status == 0) {
             return redirect()->route("manager.changepassword");
         }
         $works = Workorder::query()->where("status", 1)->get();
@@ -67,7 +67,7 @@ class ManagerWorkOrderController extends Controller
     }
     public function ViewCompleteWork()
     {
-        if (auth()->user()->status == 2) {
+        if (auth()->user()->status == 0) {
             return redirect()->route("manager.changepassword");
         }
         $works = Workorder::query()->where("status", 1)->where("workapprove_status", 1)->get();

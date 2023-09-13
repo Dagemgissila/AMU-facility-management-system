@@ -33,7 +33,7 @@
                         <label for="role">Role</label>
                         <select name="role" class="form-control" style="width: 100%;" id="role" >
                             <option value="">select the role</option>
-                            <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+
                             <option value="facility manager" {{ old('role') == 'facility_manager' ? 'selected' : '' }}>Facility Manager</option>
                             <option value="store manager" {{ old('role') == 'store_manager' ? 'selected' : '' }}>Store Manager</option>
                         </select>

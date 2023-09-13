@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 class ManagerItem extends Controller
 {
     public function index(){
+        if (auth()->user()->status == 0) {
+            return redirect()->route("manager.changepassword");
+        }
         $requestItem=Requestitem::query()->orderBy("created_at","desc")->get();
 
         return view("facilityM.ViewRequestItem",compact("requestItem"));

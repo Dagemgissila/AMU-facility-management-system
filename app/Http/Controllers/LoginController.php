@@ -26,7 +26,7 @@ class LoginController extends Controller
         ]);
 
         if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
-            if(auth()->user()->status==0){
+            if(auth()->user()->status==2){
                 return back()->with("error","your account is not approved");
              }
 
@@ -37,9 +37,7 @@ class LoginController extends Controller
                 }
 
                 else if(auth()->user()->role == 'technician'){
-                    if (auth()->user()->status == 2) {
-                        return redirect()->route("technician.changePassword");
-                    }
+
                     return redirect()->route('technician.dashboard');
                 }
 
@@ -53,9 +51,7 @@ class LoginController extends Controller
                       return redirect()->route("storeM.dashboard");
                 }
                 else if(auth()->user()->role == 'facility manager'){
-                    if(auth()->user()->status==0){
-                        return redirect()->route('manager.changepassword');
-                     }
+
                    return redirect()->route('manager.dashboard');
                 }
              }

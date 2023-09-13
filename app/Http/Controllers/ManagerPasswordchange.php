@@ -9,9 +9,7 @@ use Illuminate\Support\Facades\Hash;
 class ManagerPasswordchange extends Controller
 {
     public function index(){
-        if(auth()->user()->status==0){
-            return redirect()->route('manager.changepassword');
-         }
+
         return view("facilityM.changePassword");
     }
 
