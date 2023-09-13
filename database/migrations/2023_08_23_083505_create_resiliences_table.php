@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("building_name");
             $table->string('building_number');
+            $table->string("location");
             $table->string("status");
             $table->timestamps();
         });

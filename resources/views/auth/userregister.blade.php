@@ -165,11 +165,15 @@ max-height: 100%
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="colleage" class="text-white font-weight-bold">Colleage</label>
-                                                    <select class="form-control" required name="colleage" id="colleage">
-                                                        <option value="">Select Your Colleage</option>
-                                                        <option value="Amit" {{ old('colleage') == 'Amit' ? 'selected' : '' }}>Amit</option>
-                                                        <option value="Awit" {{ old('colleage') == 'Awit' ? 'selected' : '' }}>Awit</option>
+                                                    <label for="campus" class="text-white font-weight-bold">Campus</label>
+                                                    <select class="form-control" required name="campus" id="campus">
+                                                        <option value="">Select Your Campus</option>
+                                                        <option value="main campus" {{ old('campus') == 'main campus' ? 'selected' : '' }}>Main Campus</option>
+                                                        <option value="abaya campus" {{ old('campus') == 'abaya campus' ? 'selected' : '' }}>Abaya Campus</option>
+                                                        <option value="kulfo campus" {{ old('campus') == 'kulfo campus' ? 'selected' : '' }}>Kulfo Campus</option>
+                                                        <option value="chamo campus" {{ old('campus') == 'chamo campus' ? 'selected' : '' }}>Chamo Campus</option>
+                                                        <option value="nechsar campus" {{ old('campus') == 'nechsar campus' ? 'selected' : '' }}>Nechsar Campus</option>
+
                                                     </select>
                                                     @if ($errors->has('colleage'))
                                                         <div class="text-danger">{{ $errors->first('colleage') }}</div>
@@ -215,21 +219,18 @@ max-height: 100%
                                                     @endif
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <div class="form-group">
-                                                        <label for="faculty" class="text-white font-weight-bold">Faculty</label>
-                                                        <select name="faculty" class="form-control" required>
-                                                            <option value="">Select Your faculty</option>
-                                                            <option value="Faculty of Computing & Software Enginering" {{ old('faculty') == 'Faculty of Computing & Software Enginering' ? 'selected' : '' }}>Faculty of Computing & Software Enginering</option>
-                                                            <option value="Electrical & Computing Engineering" {{ old('faculty') == 'Electrical & Computing Engineering' ? 'selected' : '' }}>Electrical & Computing Engineering</option>
-                                                        </select>
-                                                    </div>
-                                                    @if ($errors->has('faculty'))
-                                                        <div class="text-danger">{{ $errors->first('faculty') }}</div>
-                                                    @endif
+                                                <div class="form-group" >
+                                                    <label for="email" class="text-white font-weight-bold">House Number</label>
+                                                    <input type="number" class="form-control" value="{{old('house_number')}}" placeholder="house number" name="house_number" />
                                                 </div>
+                                                @if ($errors->has('house_number'))
+                                                    <div class="text-danger">{{ $errors->first('house_number') }}</div>
+                                                @endif
+
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="university_id" class="text-white font-weight-bold">University ID</label>
@@ -240,6 +241,7 @@ max-height: 100%
                                                 @endif
 
                                             </div>
+
 
 
                                          </div>
@@ -255,6 +257,7 @@ max-height: 100%
                                                 @endif
 
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="password" class="text-white font-weight-bold">Password</label>

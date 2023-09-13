@@ -74,7 +74,7 @@ class AdminController extends Controller
     {
         User::whereId($request->userid)->update([
             'password' => Hash::make(12345678),
-            'status'=>2
+            'status'=>0
         ]);
 
         return back()->with('message', 'Password reset successfully to 12345678');

@@ -20,6 +20,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <th>No</th>
                                             <th>username</th>
                                             <th>role</th>
                                             <th>action</th>
@@ -30,8 +31,13 @@
                                     <tbody>
                                    @if ($users->count() > 0)
 
+                                    @php
+                                        $i=0;
+                                    @endphp
+
                                    @foreach ($users as $user)
                                    <tr>
+                                    <td>{{++$i}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->role}}</td>
                                     <td class="d-flex"> <form action="{{route('admin.resetpassword')}}" method="post">

@@ -19,10 +19,11 @@ return new class extends Migration
             $table->string('middlename');
             $table->string('phone_number');
             $table->string('lastname');
-            $table->string('colleage');
-            $table->string('faculty');
+            $table->string('campus');
+            $table->string('house_number');
             $table->string('building_name');
             $table->string('building_number');
+            $table->string("location");
             $table->string('university_id');
             $table->boolean('status')->default(0);
 

@@ -19,12 +19,14 @@ class ManagerResilienceController extends Controller
        $this->validate($request,[
         'building_name'=>'required',
         'building_number'=>'required',
+        "location"=>"required",
         'status'=>'required'
        ]);
 
        $resilience=new Resilience();
        $resilience->building_name=$request->building_name;
        $resilience->building_number=$request->building_number;
+       $resilience->location=$request->location;
        $resilience->status=$request->status;
        $resilience->save();
 

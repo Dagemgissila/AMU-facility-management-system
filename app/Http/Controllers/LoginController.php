@@ -77,10 +77,11 @@ class LoginController extends Controller
             'middlename' => 'required',
             'lastname' => 'required',
             'phone_number' => 'required|numeric|digits:10|unique:staff|unique:staff',
-            'colleage' => 'required',
+            'campus' => 'required',
             'building_name' => 'required',
             'building_number' => 'required',
-            'faculty' => 'required',
+            'house_number'=>'house_number|min:0',
+
             'university_id' => 'required|image|mimes:jpeg,png,gif',
             'email' => 'required|unique:users',
             'password' => 'required|min:8|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
@@ -110,8 +111,9 @@ class LoginController extends Controller
        $staff->middlename=$request->middlename;
        $staff->lastname=$request->lastname;
        $staff->phone_number=$request->phone_number;
-       $staff->colleage=$request->colleage;
-       $staff->faculty=$request->faculty;
+       $staff->campus=$request->campus;
+       $staff->house_number=$request->house_number;
+
        $staff->building_name=$request->building_name;
        $staff->building_number=$request->building_number;
        $staff->university_id=$filename;

@@ -12,11 +12,15 @@
 
                     <div class="form-group">
                         <label for="">Building Name</label>
-                        <input type="text" class="form-control" name="building_name" id="">
+                        <input type="text" class="form-control" name="building_name" required id="">
                     </div>
                     <div class="form-group">
                         <label for="">Building Number</label>
-                        <input type="number" class="form-control" name="building_number" id="">
+                        <input type="number" class="form-control" name="building_number" required id="">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Location</label>
+                        <input type="text" class="form-control" name="location" required id="">
                     </div>
                     <div class="form-group">
                         <label for="building">Building Status</label>
@@ -68,6 +72,7 @@
                                         <tr> <th>Id</th>
                                              <th>Building Name</th>
                                              <th>Building Number</th>
+                                             <th>Location</th>
                                              <th>Staus</th>
                                              <th>Action</th>
 
@@ -84,6 +89,7 @@
                                         <td>{{++$i}}</td>
                                         <td>{{$res->building_name}}</td>
                                         <td>{{$res->building_number}}</td>
+                                        <td>{{$res->location}}</td>
                                         <td>
                                            @if ($res->status=="pending")
                                               <p class="text-danger font-weight-bold">pending</p>
