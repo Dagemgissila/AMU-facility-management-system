@@ -12,8 +12,8 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active ">
-        <a class="nav-link" href="index.html">
+    <li class="nav-item  {{Request::is('store-manager/dashboard') ? 'bg-info font-weight-bold' : ''}}">
+        <a class="nav-link" href="{{route('storeM.dashboard')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -42,9 +42,9 @@
 
 
 
-    <li class="nav-item">
+    <li class="nav-item {{Request::is('store-manager/changepassword') ? 'bg-info font-weight-bold' : ''}}">
         <a class="nav-link" href="{{route('storeM.changepassword')}}">
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class="fas fa-fw fa-lock"></i>
             <span>Change Password</span></a>
     </li>
 

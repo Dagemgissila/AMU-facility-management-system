@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboard;
 use App\Http\Controllers\Changepassword;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StoreDashboard;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StoreManagerItem;
@@ -124,6 +125,7 @@ Route::middleware(['auth', 'user-role:store manager'])->group(function () {
     Route::get("store-manager/view-approved-item",[StoreManagerItem::class,'viewApproveItem'])->name("storeM.viewaAppovedItem");
     Route::get("store-manager/changepassword",[StorePasswordController::class,"index"])->name("storeM.changepassword");
     Route::post('store-manager/changepassword',[StorePasswordController::class,"changepassword"])->name("storeM.changePss");
+    Route::get("store-manager/dashboard",[StoreDashboard::class,"index"])->name("storeM.dashboard");
 });
 
 
