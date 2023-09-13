@@ -28,7 +28,26 @@ max-height: 100%
     animation: slideshow 14s infinite;
   }
 
-    @keyframes slideshow {
+  @keyframes slideshow {
+      0% {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{{ asset('img/photo_2019-12-23_11-11-12.jpg') }}');
+      }
+      20% {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{{ asset('img/photo_2021-11-14_10-23-42.jpg') }}');
+      }
+      40% {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{{ asset('img/photo_2021-04-09_11-23-04.jpg') }}');
+      }
+      60% {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{{ asset('img/photo_2021-05-09_09-42-14.jpg') }}');
+      }
+      80% {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{{ asset('img/photo_2021-05-09_09-41-29.jpg') }}');
+      }
+      100% {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{{ asset('img/photo_2021-06-03_03-22-32.jpg') }}');
+      }
+    } @keyframes slideshow {
       0% {
         background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/photo_2021-06-16_07-52-35.jpg');
       }

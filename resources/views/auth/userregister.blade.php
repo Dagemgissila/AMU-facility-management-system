@@ -124,7 +124,7 @@ max-height: 100%
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="firstname">First Name</label>
+                                                    <label for="firstname" class="text-white font-weight-bold">First Name</label>
                                                     <input type="text" class="form-control" value="{{ old('firstname') }}" name="firstname" id="firstname" placeholder="Enter first name">
                                                     @if ($errors->has('firstname'))
                                                     <div class="text-danger">{{ $errors->first('firstname') }}</div>
@@ -134,7 +134,7 @@ max-height: 100%
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="middlename">Middle Name</label>
+                                                    <label for="middlename" class="text-white font-weight-bold">Middle Name</label>
                                                     <input type="text" class="form-control" value="{{ old('middlename') }}" name="middlename" id="middlename" placeholder="Enter middle name">
                                                     @if ($errors->has('middlename'))
                                                     <div class="text-danger">{{ $errors->first('middlename') }}</div>
@@ -144,7 +144,7 @@ max-height: 100%
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="lastname">Last Name</label>
+                                                    <label for="lastname" class="text-white font-weight-bold">Last Name</label>
                                                     <input type="text" class="form-control" value="{{ old('lastname') }}" name="lastname" id="lastname" placeholder="Enter last name">
                                                     @if ($errors->has('lastname'))
                                                     <div class="text-danger">{{ $errors->first('lastname') }}</div>
@@ -156,7 +156,7 @@ max-height: 100%
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="phone_number">Phone Number</label>
+                                                    <label for="phone_number" class="text-white font-weight-bold">Phone Number</label>
                                                     <input type="number" class="form-control" value="{{ old('phone_number')}}" name="phone_number" placeholder="enter yout phone number" id="phonenumber">
                                                 </div>
                                                 @if ($errors->has('phone_number'))
@@ -165,7 +165,7 @@ max-height: 100%
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="colleage">Colleage</label>
+                                                    <label for="colleage" class="text-white font-weight-bold">Colleage</label>
                                                     <select class="form-control" required name="colleage" id="colleage">
                                                         <option value="">Select Your Colleage</option>
                                                         <option value="Amit" {{ old('colleage') == 'Amit' ? 'selected' : '' }}>Amit</option>
@@ -178,7 +178,7 @@ max-height: 100%
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="building">Building Name</label>
+                                                    <label for="building" class="text-white font-weight-bold">Building Name</label>
                                                     <select class="form-control" required name="building_name" id="building">
                                                         @if ($resilience->count() > 0)
                                                             <option value="">Select Your Building</option>
@@ -199,7 +199,7 @@ max-height: 100%
                                          <div class="row">
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="building">Building Number</label>
+                                                    <label for="building" class="text-white font-weight-bold">Building Number</label>
                                                     <select class="form-control" required name="building_number" id="building">
                                                         @if ($resilience->count() > 0)
                                                             <option value="">Select Your Building</option>
@@ -218,7 +218,7 @@ max-height: 100%
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <div class="form-group">
-                                                        <label for="faculty">Faculty</label>
+                                                        <label for="faculty" class="text-white font-weight-bold">Faculty</label>
                                                         <select name="faculty" class="form-control" required>
                                                             <option value="">Select Your faculty</option>
                                                             <option value="Faculty of Computing & Software Enginering" {{ old('faculty') == 'Faculty of Computing & Software Enginering' ? 'selected' : '' }}>Faculty of Computing & Software Enginering</option>
@@ -232,7 +232,7 @@ max-height: 100%
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="university_id">University ID</label>
+                                                    <label for="university_id" class="text-white font-weight-bold">University ID</label>
                                                     <input type="file" class="form-control-file" name="university_id" id="university_id" accept=".pdf, .jpg, .png">
                                                 </div>
                                                 @if ($errors->has('university_id'))
@@ -246,8 +246,8 @@ max-height: 100%
 
                                          <div class="row">
                                             <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="email">Email</label>
+                                                <div class="form-group" >
+                                                    <label for="email" class="text-white font-weight-bold">Email</label>
                                                     <input type="email" class="form-control" value="{{old('email')}}" placeholder="email" name="email" id="email"/>
                                                 </div>
                                                 @if ($errors->has('email'))
@@ -257,7 +257,7 @@ max-height: 100%
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="password">Password</label>
+                                                    <label for="password" class="text-white font-weight-bold">Password</label>
                                                     <input type="password" class="form-control" placeholder="password" name="password" />
                                                 </div>
                                                 @if ($errors->has('password'))
@@ -267,7 +267,7 @@ max-height: 100%
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="password">Confirm Password</label>
+                                                    <label for="password" class="text-white font-weight-bold">Confirm Password</label>
                                                     <input type="password" class="form-control" placeholder="confirm password" name="confirm_password" />
                                                 </div>
                                                 @if ($errors->has('confirm_password'))
