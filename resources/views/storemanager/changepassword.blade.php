@@ -24,7 +24,7 @@
              <p class="p-2 d-flex justify-content-center align-items-center">{{session('message')}}</p>
   </div>
    @endif
-        <form class="user" action="{{route('manager.changePss')}}" method="post">
+        <form class="user" action="{{route('storeM.changePss')}}" method="post">
             @csrf
             <div class="form-group">
                 <label for="">Old Password</label>

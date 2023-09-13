@@ -12,6 +12,7 @@ use App\Http\Controllers\UserrPasswordchange;
 use App\Http\Controllers\ManagerPasswordchange;
 use App\Http\Controllers\StoreManagerDashboard;
 use App\Http\Controllers\ManagerStaffController;
+use App\Http\Controllers\StorePasswordController;
 use App\Http\Controllers\UserWorkorderController;
 use App\Http\Controllers\StaffDashboardController;
 use App\Http\Controllers\TechnicianItemController;
@@ -121,6 +122,8 @@ Route::middleware(['auth', 'user-role:store manager'])->group(function () {
     Route::post("store-manager/editItem",[StoreManagerItem::class,"editItem"])->name("storeM.editItem");
     Route::post("store-manager/edit",[StoreManagerItem::class,"edit"])->name("storeM.edit");
     Route::get("store-manager/view-approved-item",[StoreManagerItem::class,'viewApproveItem'])->name("storeM.viewaAppovedItem");
+    Route::get("store-manager/changepassword",[StorePasswordController::class,"index"])->name("storeM.changepassword");
+    Route::post('store-manager/changepassword',[StorePasswordController::class,"changepassword"])->name("storeM.changePss");
 });
 
 

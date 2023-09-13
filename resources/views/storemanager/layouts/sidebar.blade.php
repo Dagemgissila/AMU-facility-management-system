@@ -43,7 +43,7 @@
 
 
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="{{route('storeM.changepassword')}}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Change Password</span></a>
     </li>
