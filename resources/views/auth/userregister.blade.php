@@ -204,7 +204,7 @@ max-height: 100%
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="building" class="text-white font-weight-bold">Building Number</label>
-                                                    <select class="form-control" required name="building_number" id="building">
+                                                    <select class="form-control" required name="building_number"  id="building">
                                                         @if ($resilience->count() > 0)
                                                             <option value="">Select Your Building</option>
                                                             @foreach ($resilience as $res)
@@ -223,7 +223,7 @@ max-height: 100%
                                             <div class="col-md-4">
                                                 <div class="form-group" >
                                                     <label for="email" class="text-white font-weight-bold">House Number</label>
-                                                    <input type="number" class="form-control" value="{{old('house_number')}}" placeholder="house number" name="house_number" />
+                                                    <input type="number" class="form-control" min="1" value="{{old('house_number')}}" placeholder="house number" name="house_number" />
                                                 </div>
                                                 @if ($errors->has('house_number'))
                                                     <div class="text-danger">{{ $errors->first('house_number') }}</div>
