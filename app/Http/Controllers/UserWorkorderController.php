@@ -38,16 +38,19 @@ class UserWorkorderController extends Controller
         if (auth()->user()->status == 0) {
             return redirect()->route("user.changePassword");
         }
+        
         $user = auth()->user()->staff;
         $staffID = $user->id;
 
-        $workorder = Workorder::query()->where('staff_id', $staffID)->get();
-
+        
+        $me = Workorder::query()->where('staff_id', $staffID)->get();
+        
+      
         $technician_firstname = null;
         $technician_lastname = null;
 
-        if ($workorder->isNotEmpty()) {
-            $workorderW = $workorder->first()->workorderW;
+        if ($me->isNotEmpty()) {
+            $workorderW = $me->first()->workorderW;
             if ($workorderW->isNotEmpty()) {
                 $technician_id = $workorderW->first()->technician_id;
                 if ($technician_id) {
@@ -59,8 +62,9 @@ class UserWorkorderController extends Controller
                 }
             }
         }
+        
 
-        return view('users.workOrderStatus', compact("workorder", "technician_firstname", "technician_lastname"));
+        return view('users.workOrderStatus', compact("me", "technician_firstname", "technician_lastname"));
     }
 
     public function confirmWork(Request $request){

@@ -31,11 +31,15 @@
 
 
                                     <tbody>
-                                          @if ($workorder->count() > 0)
+
+                                  
+                                    
+                                          @if($me->count() > 0)
                                @php
+                               
                                    $i=0;
                                @endphp
-                       @foreach ($workorder as $work)
+                       @foreach ($me as $work)
                        <tr>
                                 <td>{{++$i}}</td>
                                 <td>{{$work->work_type}}</td>
@@ -68,6 +72,9 @@
                        @endforeach
 
                                     </tbody>
+                                    @else
+
+                                    
                                     @endif
                                 </table>
                             </div>
