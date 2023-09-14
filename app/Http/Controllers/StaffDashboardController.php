@@ -12,7 +12,7 @@ class StaffDashboardController extends Controller
             return redirect()->route("user.changePassword");
         }
 
-        $workorder=Workorder::query()->where("staff_id",auth()->user()->staff->id)->count();
+        $workorder=Workorder::query()->where("staff_id",auth()->user()->staff->id)->get();
         return view('users.dashboard',compact("workorder"));
     }
 }
