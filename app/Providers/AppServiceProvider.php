@@ -28,12 +28,16 @@ class AppServiceProvider extends ServiceProvider
             $view->with('staff', $staff);
         });
 
-       if(auth()->user()){
+
         View::composer('*', function ($view) {
-            $workt = WorkTechnician::query()->where("status",0)->where("technician_id",auth()->user()->technician->id)->get();
-            $view->with('workt', $workt);
+            if (auth()->check() && auth()->user()->technician) {
+                $workt = WorkTechnician::query()
+                    ->where('status', 0)
+                    ->where('technician_id', auth()->user()->technician->id)
+                    ->get();
+                $view->with('workt', $workt);
+            }
         });
-       }
 
         View::composer('*', function ($view) {
             $workorder = Workorder::query()->where("status",0)->where("workapprove_status",0)->get();
