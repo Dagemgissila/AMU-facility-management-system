@@ -21,7 +21,7 @@ class StoreManagerItem extends Controller
     public function addItem(Request $request){
         $this->validate($request,[
             'item_name'=>'required',
-            'unit'=>'string|optional',
+
             'amount'=>'required'
         ]);
 
