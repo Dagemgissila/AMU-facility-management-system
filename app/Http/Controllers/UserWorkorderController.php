@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Workorder;
 use App\Models\Technician;
+use App\Models\WorkTechnician;
 use Illuminate\Http\Request;
 
 class UserWorkorderController extends Controller
@@ -72,6 +73,10 @@ class UserWorkorderController extends Controller
         Workorder::whereId($request->work_id)->update([
             'workapprove_status'=>1
         ]);
+
+         WorkTechnician::where("work_id",$request->work_id)->update([
+            "status"=>1
+         ]);
 
         return back()->with("message","Work is succesfully confirmed");
     }
