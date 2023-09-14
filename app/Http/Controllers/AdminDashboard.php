@@ -9,11 +9,12 @@ class AdminDashboard extends Controller
 {
     public function index(){
         $user=User::count();
+        $userr=User::query()->where('role','user')->count();
         $admin=User::query()->where("role","admin")->count();
         $manager=User::query()->where("role","facility manager")->count();
         $technician=User::query()->where("role","technician")->count();
         $storeManager=User::query()->where("role","store manager")->count();
-        return view('admin.dashboard',compact('user','admin',"manager","technician","storeManager"));
+        return view('admin.dashboard',compact('user','admin',"manager","technician","storeManager","userr"));
     }
 
     public function createaccount(){

@@ -50,7 +50,9 @@ class AdminController extends Controller
     {
         $request->validate([
             'email' => 'required|unique:users|max:255',
-            "role"=>"required|max:255"
+            'role' => 'required|unique:users',
+        ], [
+            'role.unique' => 'The account is already created for ' . $request->role,
         ]);
 
         $user=new User;

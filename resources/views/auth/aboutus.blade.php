@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
 
 
   <style>
@@ -23,7 +25,7 @@
     max-width: 100%;
 max-height: 100%
     height: 90vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/photo_2019-11-03_16-12-19.jpg') repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('img/photo_2019-11-03_16-12-19.jpg') repeat;
     background-size: cover;
     animation: slideshow 14s infinite;
   }
@@ -47,25 +49,6 @@ max-height: 100%
       100% {
         background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{{ asset('img/photo_2021-06-03_03-22-32.jpg') }}');
       }
-    } @keyframes slideshow {
-      0% {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/photo_2021-06-16_07-52-35.jpg');
-      }
-      20% {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/photo_2021-04-09_11-23-04.jpg');
-      }
-      40% {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/photo_2021-04-09_11-23-04.jpg');
-      }
-      60% {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/photo_2021-05-09_09-41-29.jpg');
-      }
-      80% {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/photo_2021-05-09_09-41-29.jpg');
-      }
-      100% {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/photo_2021-06-03_03-22-32.jpg');
-      }
     }
     h1 {
     text-align: center;
@@ -83,6 +66,10 @@ max-height: 100%
     font-size: 44px;
     font-family: Arial, sans-serif;
   }
+  .car{
+    background: rgba(214, 208, 208, 0.5);
+
+  }
   </style>
 
 </head>
@@ -90,24 +77,25 @@ max-height: 100%
 <body>
   <header class="py-1">
     <div class="container d-flex justify-content-between align-items-center">
-      <img src="img/ArbaMinchUniversity-logo_0.gif" alt="Logo" style="width:130px">
+      <img src="{{asset('img/ArbaMinchUniversity-logo_0.gif')}}" alt="Logo" style="width:130px">
       <nav>
         <ul class="list-inline">
             <li class="list-inline-item"><a href="{{route('home')}}" class="text-white">Home</a></li>
           <li class="list-inline-item"><a href="{{route('user.login')}}" class="text-white">Login</a></li>
           <li class="list-inline-item"><a href="{{route('user.register')}}" class="text-white">Register</a></li>
-
-          <li class="list-inline-item"><a href="{{route('aboutus')}}" class="text-white">About Us</a></li>
+         
+          <li class="list-inline-item"><a href="{{route('aboutus')}" class="text-white">About Us</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
- <section class="container mx-auto p-4 mt-5 bg-none">
-      <div class="d-flex flex-column justify-content-center align-items-center">
-          <h1>Arba minch University </h1>
-           <h1>facility management system</h1>
-      </div>
+ <section class="container mx-auto p-4">
+    <div class="container">
+
+       
+
+    </div>
  </section>
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>

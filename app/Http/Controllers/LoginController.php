@@ -17,6 +17,7 @@ class LoginController extends Controller
         if($user<1){
             return redirect()->route('admin.register');
         }
+        
         return view('auth.login');
     }
 
@@ -145,6 +146,9 @@ class LoginController extends Controller
         return redirect()->route("user.login")->with('message', 'You have registered successfully. Please wait until your account is approved.');
     }
 
+    public function aboutus(){
+        return view('auth.aboutus');
+    }
     private function uploadUniversityId(Request $request)
     {
         if ($request->hasFile('university_id')) {

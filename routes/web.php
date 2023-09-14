@@ -45,7 +45,7 @@ Route::post('/adminregister',[AdminController::class,'registeradmin'])->name('ad
 Route::get('/user/register',[LoginController::class,'registerPage'])->name('user.register');
 Route::post('/user/register',[LoginController::class,'useRegister'])->name('userRegister');
 Route::post('logout',[AdminController::class,'logout'])->name('logout');
-
+Route::get("about-us",[LoginController::class,'aboutus'])->name('aboutus');
 
 //admin page
 Route::middleware(['auth', 'user-role:admin'])->group(function () {

@@ -84,7 +84,7 @@ max-height: 100%
           <li class="list-inline-item"><a href="{{route('user.login')}}" class="text-white">Login</a></li>
           <li class="list-inline-item"><a href="{{route('user.register')}}" class="text-white">Register</a></li>
 
-          <li class="list-inline-item"><a href="#" class="text-white">About Us</a></li>
+          <li class="list-inline-item"><a href="{{route('aboutus')}}" class="text-white">About Us</a></li>
         </ul>
       </nav>
     </div>
